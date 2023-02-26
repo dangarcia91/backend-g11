@@ -49,9 +49,9 @@ def concatenar():
 def calcularResultadoPorOperacion(operacion, valor_1, valor_2):
     #print(type(valor_1), type(valor_2))
     if operacion == 'suma':
-      return f'El resultado de la {operacion} es {suma(valor_1, valor_2) }' 
+        return f'El resultado de la {operacion} es {suma(valor_1, valor_2) }' 
     elif operacion == 'resta':
-      return f'El resultado de la {operacion} es {resta(valor_1, valor_2) }' 
+        return f'El resultado de la {operacion} es {resta(valor_1, valor_2) }' 
     else:
         return 'La operación no existe'
 
