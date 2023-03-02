@@ -86,22 +86,22 @@ CREATE TABLE direcciones(
     CONSTRAINT fk_alumnos FOREIGN KEY (alumno_id) REFERENCES alumnos(id)
 );
 
--- DDL (ALTER)
+-- DDL (ALTER) sirve para actualizar o modificar la tabla
 
 
 -- TAREA
 -- PASOS: Primero ingresar los datos y luego resolver las siguientes queries:
 -- DIRECCION            NUM     REFERENCIA              ALUMNO_ID
-'Calle los Girasoles', 750, 'Al costado de la polleria', 1
-'Calle Los aviadores', 1050, NULL,2
-'Av El Sol', 125, 'Del ovalo a media cuadra', 1
-'Av Los Gallos', 777, NULL, 3
-'Av Tupac Yupanqui', 123, NULL, 7
-'Av Siempre viva', 7840, 'Al frente de la ferreteria', 8
-'Calle Los martires', 6520, NULL, 5
-'Pasaje de las flores', 526, NULL, 4
-'Alameda Chabuca', 740, 'Dos cuadras de la piscina', 6
-'Callejon Bravo', 14, 'A dos casas de la reja', 3
+(DEFAULT, 'Calle los Girasoles', 750, 'Al costado de la polleria', 1),
+(DEFAULT, 'Calle Los aviadores', 1050, NULL,2), 
+(DEFAULT, 'Av El Sol', 125, 'Del ovalo a media cuadra', 1), 
+(DEFAULT, 'Av Los Gallos', 777, NULL, 3),
+(DEFAULT, 'Av Tupac Yupanqui', 123, NULL, 7),
+(DEFAULT, 'Av Siempre viva', 7840, 'Al frente de la ferreteria', 8),
+(DEFAULT, 'Calle Los martires', 6520, NULL, 5),
+(DEFAULT, 'Pasaje de las flores', 526, NULL, 4),
+(DEFAULT, 'Alameda Chabuca', 740, 'Dos cuadras de la piscina', 6),
+(DEFAULT, 'Callejon Bravo', 14, 'A dos casas de la reja', 3);
 
 
 -- 1. Buscar todas las direcciones que sean calles
