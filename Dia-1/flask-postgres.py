@@ -44,13 +44,49 @@ def alumnos ():
         data = request.json
         print(data)
         cursor = conexion.cursor()
-        cursro.execute("INSERT INTO ALUMNOS (nombre, apellido, matriculado) VALUES (%s, %s. %s)", (
+        cursor.execute("INSERT INTO ALUMNOS (nombre, apellido, matriculado) VALUES (%s, %s, %s)", (
             data.get('nombre'), data.get('apellido'), data.get('matriculado')
         ))
+        #Indicamos a la base de datos que guarde los cambios (insert) de manera permanente
+        conexion.commit()
+
         return {
-            'message': 'Yo soy el POST'
+            'message': 'Alumno ingresado exitosamente'
         }
 
+@app.route('/alumno/<id>', methods = ['GET', 'PUT', 'DELETE'])
+def gestion_alumno(id):
+    if request.method == 'GET':
+        
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM alumnos WHERE id=%s", (id,))
+        alumno = cursor.fetchone()
+        # si el alumno no existe, indicar en el mensaje que el alumno no existe, caso contrario devolver el alumno
+        print(alumno)
+        if alumno is None:
+            return {
+            'message': 'el alumno no existe'
+            }
+        else:
+            return {
+            'content': {
+                'id': alumno[0],
+                'nombre': alumno[1],
+                'apellido': alumno[2],
+                'sexo': alumno[3],
+                'fecha_creacion': alumno[4],
+                'matriculado': alumno[5],
+            }
+            }
+
+    elif request.method == 'PUT':
+        # TODO: recibir la información del body y esta modificar la data del alumno, primero validar si el alumno existe, si no existe no hacer ninguna modificación, si existe hacer la modificación.
+        pass
+    
+    elif request.method == 'DELETE':
+        #TODO: REcibir el id por la url y validar si el alumno existe, si existe, eliminarlo (hacer un delete) caso contrario indicar que el alumno no existe
+        pass
+    
 if __name__ == '__main__':
     # debug > indicar que cada vez que guardemos un archivo del proyecto el servidor se reinicie automaticamente
     app.run(debug = True)
