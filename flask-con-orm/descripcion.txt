@@ -1,0 +1,4 @@
+Se requiere una base de datos para un colegio, en la cual se divide solamente en primaria, y éste tiene 6 niveles, y a su vez cada nivel tiene dos o más secciones, además se tiene a los maestros que en este caso, un maestro va a pertenecer a una o más secciones, pero una sección solo puede tener un maestro como máximo
+La información que se guarda de los maestros es nombre, apellidos, correo y dirección.
+La de los niveles, el número de nivel y su descripción
+La de las secciones, la letra de la sección y cuántos alumnos tiene esa sección

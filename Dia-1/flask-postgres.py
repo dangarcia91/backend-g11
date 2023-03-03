@@ -1,7 +1,12 @@
 from flask import Flask, request
 from psycopg2 import connect
+from flask_cors import CORS
 
 app = Flask(__name__)
+#le estamos diciendo que puede acceder cualquier origen, cualquier método y enviar cualquier header
+CORS(app, methods = ['GET', 'POST', 'PUT', 'DELETE'], origins = ['http://localhost:5555', 'http://127.0.0.1:5555'])
+
+
 # me conecto a la bd
 conexion = connect(host='localhost', database= 'pruebas', user='postgres', password='data23')
 
