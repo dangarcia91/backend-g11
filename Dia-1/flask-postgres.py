@@ -86,12 +86,32 @@ def gestion_alumno(id):
 
     elif request.method == 'PUT':
         # TODO: recibir la información del body y esta modificar la data del alumno, primero validar si el alumno existe, si no existe no hacer ninguna modificación, si existe hacer la modificación.
-        pass
+        data = request.json
+        cursor = conexion.cursor()
+        cursor.execute(f"SELECT * FROM alumnos where id={id}")
+        resultado = cursor.fetchone()
+        if resultado is None:
+            return {}
+        else: 
+            cursor.execute("UPDATE alumnos SET (nombre, apellido, matriculado) VALUES (%s, %s, %s)", (
+            data.get('nombre'), data.get('apellido'), data.get('matriculado')
+        ))
+        conexion.commit()
     
     elif request.method == 'DELETE':
         #TODO: REcibir el id por la url y validar si el alumno existe, si existe, eliminarlo (hacer un delete) caso contrario indicar que el alumno no existe
-        pass
-    
+        data = request.json
+        cursor = conexion.cursor()
+        resultado = cursor.fetchone()
+        if resultado is not None:
+            cursor.execute("DELETE FROM alumnos where id={id}")
+        else:
+            return {
+                'message': 'El alumno no existe'
+            }  
+
+
+
 if __name__ == '__main__':
     # debug > indicar que cada vez que guardemos un archivo del proyecto el servidor se reinicie automaticamente
     app.run(debug = True)
