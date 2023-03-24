@@ -1,0 +1,7 @@
+django-admin startproject NOMBRE > crea un nuevo proyecto en la ubicación de la terminal
+python manage.py startapp NOMBRE > crea una nueva aplicación para el proyecto
+python manage.py runserver > levanta el servidor de django en DESARROLLO
+python.manage.py showmigrations > mostrará todas las migraciones en mi proyecto y las que no se han ejecutado se mostrará vacía [] y ñas que si [X]
+python manage.py migrate > ejecutará todas las migraciones pendientes
+python manage.py createsuperuser > da un formulario para crear un superusuario con acceso al panel administrativo
+python manage.py makemigrations NOMBRE _APP
