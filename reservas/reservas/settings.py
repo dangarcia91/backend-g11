@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gestion'
+    'gestion',
+    # sirve para indicar que ahora ya podemos entrar a los archivos de Framework
+    'rest_framework' 
 ]
 
 MIDDLEWARE = [
