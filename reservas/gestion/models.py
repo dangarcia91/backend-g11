@@ -9,3 +9,8 @@ class Categoria(models.Model):
     class Meta:
         # sirve para modificar alguna configuración de la tabla en nuestra bd
         db_table = 'categorias'
+
+class Producto(model.Model):
+    nombre = models.TextField(null=False)
+    precio = models.FloatField()
+    disponible = models.BooleanField(default=True)
