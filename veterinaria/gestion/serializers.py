@@ -6,6 +6,11 @@ class RegistroUsuarioSerializer(ModelSerializer):
         model = Usuario
         fields = '__all__'
 
+class Personserializer(ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['nombre', 'apellido', 'correo', 'tipoUsuario']
+
 class MascotasSerializer(ModelSerializer):
     class Meta:
             model = Mascota
