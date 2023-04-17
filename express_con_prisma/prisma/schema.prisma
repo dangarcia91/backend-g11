@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id              Int     @id @default(autoincrement())
+  nombre          String  //@unique
+  descripcion     String?
+  disponibilidad  Boolean @default(true)
+
+  productos Producto []
+
+
+  @@map("categorias")
+}
+
+model Producto {
+  id                Int      @id @default(autoincrement())
+  nombre            String
+  precio            Float
+  fechaVencimiento  DateTime @map("fecha_vencimiento")
+  categoriaId       Int      @map("categoria_id")
+
+  //Creamos las relaciones
+  //https://www.prisma.io/docs/concepts/components/prisma-schema/relations
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+
+  //No se puede repetir los valores de nombre-precio-categoriaId
+  @@unique([nombre, precio, categoriaId])
+  @@map("productos")
+}

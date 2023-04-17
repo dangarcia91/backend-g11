@@ -90,6 +90,7 @@ servidor.route('/producto/:id')
   });
 }).patch((req,res) => {
   //TODO: Hacer la actualización parcial. Por ejemplo si solo quiero cambiar el nombre o si solo quiero cambiar el nombre y el precio
+
 })
 .delete((req, res)=>{
   const {id} = req.params;
@@ -114,18 +115,33 @@ servidor.route("/buscar-productos").get((req,res) => {
   let resultado = [];
 
   if (req.query.nombre) {
-    resultado = productos.filter((producto) => {
+    resultado = [
+      ...resultado, 
+      ...productos.filter((producto) => {
       // si en la posición que estamos en el arreglo retorna true entonces se agregará ese elemento al nuevo arreglo
-      return producto.nombre === req.query.nombre;
-    });
+        return producto.nombre === req.query.nombre;
+      }),
+    ];
   }
 
   // Para que sea la búsqueda del inicio de una palabra
   if (req.query.patron) {
-    resultado = productos.filter((producto)=>{
+    resultado = [
+      ...resultado,
+      ...productos.filter((producto)=>{
       // podemos utilizar expresiones regulares para hacer búsqueda de patrones
-      return new RegExp(`${req.query.patron}\w*`).test(producto.nombre);
-    });
+        return new RegExp(`${req.query.patron}\w*`).test(producto.nombre);
+    }),
+  ];
+  }
+
+  if(req.query.disponible) {
+    resultado = [
+      ...resultado,
+      ...productos.filter((producto)=>{
+        return String(producto.disponible) === req.query.disponible;
+      }),
+    ];
   }
   res.status(200).json({
     content: resultado,
