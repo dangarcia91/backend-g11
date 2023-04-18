@@ -90,8 +90,23 @@ servidor.route('/producto/:id')
   });
 }).patch((req,res) => {
   //TODO: Hacer la actualización parcial. Por ejemplo si solo quiero cambiar el nombre o si solo quiero cambiar el nombre y el precio
-  https://www.tabnine.com/code/javascript/functions/express/Express/patch
-  
+  //https://www.tabnine.com/code/javascript/functions/express/Express/patch
+  const { id } = req.params;
+  const body = req.body;
+ // body.name = req.body.name
+  const resultado = productos[id];
+
+  if (!resultado){
+    res.status(404).json({
+      message: "producto no existe",
+    });
+  }
+  productos [id] = body;
+
+  res.status(201).json({
+    message: "producto acutalizado existosamente",
+    content: productos[id],
+  });
 })
 .delete((req, res)=>{
   const {id} = req.params;
