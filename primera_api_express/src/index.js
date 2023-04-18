@@ -90,7 +90,8 @@ servidor.route('/producto/:id')
   });
 }).patch((req,res) => {
   //TODO: Hacer la actualización parcial. Por ejemplo si solo quiero cambiar el nombre o si solo quiero cambiar el nombre y el precio
-
+  https://www.tabnine.com/code/javascript/functions/express/Express/patch
+  
 })
 .delete((req, res)=>{
   const {id} = req.params;
