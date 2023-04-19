@@ -92,7 +92,14 @@ servidor.route('/producto/:id')
   //TODO: Hacer la actualización parcial. Por ejemplo si solo quiero cambiar el nombre o si solo quiero cambiar el nombre y el precio
   //https://www.tabnine.com/code/javascript/functions/express/Express/patch
   const { id } = req.params;
-  const body = req.body;
+  const {nombre, precio, disponible} = req.body
+  // productos.update({_id: body._id}), {
+  //   $set: {
+  //     nombre: body.nombre,
+  //     precio: body.precio,
+  //     disponible: body,disponible
+  //   }
+  // }
  // body.name = req.body.name
   const resultado = productos[id];
 
@@ -101,11 +108,13 @@ servidor.route('/producto/:id')
       message: "producto no existe",
     });
   }
-  productos [id] = body;
-
+  //productos [id] = body ;
+  productos.nombre = nombre;
+  productos.precio = precio;
+  productos.disponible = disponible;
   res.status(201).json({
     message: "producto acutalizado existosamente",
-    content: productos[id],
+    content: [productos.nombre, productos.precio, productos.disponible],
   });
 })
 .delete((req, res)=>{
