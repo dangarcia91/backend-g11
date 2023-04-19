@@ -36,7 +36,11 @@ export const crearProducto = async (req, res) => {
 };
 
 export const listarProductos = async (req, res) => {
-  //TODO: agregar el listar productos
+  //TODO
+  const producto = await Prisma.producto.findMany()
+  res.status(200).json({
+    content: producto,
+  });
 };
 
 export const devolverProducto = async (req, res) => {
@@ -61,4 +65,27 @@ export const devolverProducto = async (req, res) => {
 
 export const actualizarProducto = async (req, res) => {
   //TODO
+  const data = req.body;
+  const { id } = req.params;
+
+  const producto = await Prisma.producto.findFirst({
+    where: { id: +id },
+    select: { id: true},
+  });
+
+  if (!producto) {
+    return res.status(400).json({
+      message: "El producto no existe",
+    });
+  }
+
+  const productoActualizado = await Prisma.producto.update({
+    where: { id: producto.id},
+    data: data,
+  })
+
+  return res.json({
+    message: "Producto actualizado correctamente",
+    content: productoActualizado,
+  });
 };

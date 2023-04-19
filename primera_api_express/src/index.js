@@ -93,14 +93,7 @@ servidor.route('/producto/:id')
   //https://www.tabnine.com/code/javascript/functions/express/Express/patch
   const { id } = req.params;
   const {nombre, precio, disponible} = req.body
-  // productos.update({_id: body._id}), {
-  //   $set: {
-  //     nombre: body.nombre,
-  //     precio: body.precio,
-  //     disponible: body,disponible
-  //   }
-  // }
- // body.name = req.body.name
+
   const resultado = productos[id];
 
   if (!resultado){
