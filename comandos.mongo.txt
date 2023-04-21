@@ -1,0 +1,48 @@
+db        > muestra en qué base de datos me encuentro
+show dbs  > muestra las bases de datos que tenemos en el servidor
+use pruebas > crear y movernos a esa base de datos. Si no existe, la crea; si existe, solamente nios movemos
+
+---COMANDOS PRACTICOS
+
+ db.personas.insertOne > para insertar
+ db.personas.insertMany
+ db.personas.find() > para buscar
+
+ [
+    {
+        nombre: 'piña',
+        precio: 1.80,
+        disponible: true
+    },
+    {
+        nombre:'frambuesa',
+        precio: 5.20,
+        disponible: true
+    },
+    {
+        nombre: 'pitahaya',
+        precio: 4.50,
+        disponible: false
+    },
+    {
+        nombre: 'sauco',
+        precio: 8.50,
+        disponible: true
+    }
+]
+
+Buscr todos los productos cuyo nombres sea 'pitahaya'
+
+Buscar todos los productos cuyo nombre sea 'frambuesa' o 'sauco'
+
+Buscar todos los productos cuyo nombre sea 'toronja' o 'piña' y su precio sea mayor a 1.00
+
+pruebas> db.productos.find({ $and: [{precio: {$lt: 5.0}}, {disponible: true}]})
+[
+  {
+    _id: ObjectId("6441f09ff3eccead83362510"),
+    nombre: 'piña',
+    precio: 1.8,
+    disponible: true
+  }
+]
