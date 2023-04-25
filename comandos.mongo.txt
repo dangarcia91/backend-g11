@@ -1,3 +1,4 @@
+CMD > mongosh
 db        > muestra en qué base de datos me encuentro
 show dbs  > muestra las bases de datos que tenemos en el servidor
 use pruebas > crear y movernos a esa base de datos. Si no existe, la crea; si existe, solamente nios movemos
@@ -46,3 +47,51 @@ pruebas> db.productos.find({ $and: [{precio: {$lt: 5.0}}, {disponible: true}]})
     disponible: true
   }
 ]
+
+Actualizar un solo registro
+
+pruebas> db.productos.updateOne({ nombre: 'piña'}, { $set: { precio: 5, disponible: false }})
+
+Eliminaciones:
+pruebas> db.productos.deleteOne({ nombre: 'piña'})
+pruebas> db.productos.deleteMany({precio: { $gt: 1} })
+
+db.categorias.insertMany([
+    {
+        nombre: 'Abarrotes',
+        descripcion: 'Todo relacionado a abarrotes',
+        productos: [
+            {
+                nombre: 'Detergente ayudin',
+                descripcion: 'A la grasa le pone fin',
+                precio: 7.50
+            },
+            {
+                nombre: 'Cepillo dental',
+                descripcion: 'Poderoso Cepillo',
+                precio: 1.80
+            }
+        ]
+    },
+    {
+        nombre: 'Verduras',
+        descripcion: 'Ricas verduras para la casa',
+        productos: [
+            {
+                nombre: 'Beterraga',
+                precio: 1.50,
+                descripcion: null
+            },
+            {
+                nombre: 'Cebolla china',
+                precio: 2.80,
+                descripcion: 'Cebolla 100% peruana'
+            },
+            {
+                nombre: 'Zucchini',
+                precio: 7.50,
+                descripcion: 'Calabacin italiano'
+            }
+        ]
+    }
+])
